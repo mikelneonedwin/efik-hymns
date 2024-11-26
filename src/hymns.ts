@@ -1,4 +1,4 @@
-import * as Hymn from "../hymns";
+import * as Hymn from "./hymns/index";
 export default [
     {
         Component: Hymn.Hymn1,
