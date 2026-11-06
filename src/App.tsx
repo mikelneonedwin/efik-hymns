@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { CommandPalette } from "./CommandPalette";
 
 // form is globally accessible
 declare const hymnForm: HTMLFormElement & {
@@ -12,9 +13,12 @@ function App() {
     const location = useLocation();
     const navigateTo = useNavigate();
     const div = useRef<HTMLDivElement>(null)
+    const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+    const isPaletteOpenRef = useRef(false);
+    isPaletteOpenRef.current = isPaletteOpen;
 
     const elements: HTMLElement[] = [];
-    const hymn = location.pathname.match(/[^/].+$/)?.[0];
+    const hymn = location.pathname.match(/[^/]+$/)?.[0];
 
     useEffect(() => {
 
@@ -27,6 +31,7 @@ function App() {
 
         // scroll to the next part of the hymn
         function next() {
+            if (isPaletteOpenRef.current) return;
             window.scrollTo({
                 behavior: "smooth",
                 // extract first items in the list
@@ -35,12 +40,29 @@ function App() {
         }
 
         // enable accesibility features
-        window.onclick = next;
+        window.onclick = (e) => {
+            if (isPaletteOpenRef.current) return;
+            const target = e.target as HTMLElement | null;
+            if (target?.closest("button") || target?.closest("form")) return;
+            next();
+        };
+
         window.onkeydown = (ev) => {
 
-            console.log(ev)
+            if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "k") {
+                ev.preventDefault();
+                setIsPaletteOpen((prev) => !prev);
+                return;
+            }
 
-            // don't fire on an iput element
+            if (isPaletteOpenRef.current) {
+                if (ev.key === "Escape") {
+                    setIsPaletteOpen(false);
+                }
+                return;
+            }
+
+            // don't fire on an input element
             if (ev.target instanceof HTMLInputElement) return;
 
             // scroll to next part of hymn
@@ -88,6 +110,11 @@ function App() {
                     type="number"
                 />
             </form>
+
+            <CommandPalette
+                open={isPaletteOpen}
+                onOpenChange={setIsPaletteOpen}
+            />
         </>
     )
 }
