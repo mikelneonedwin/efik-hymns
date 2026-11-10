@@ -18,6 +18,8 @@ export default function Hymn19(){
 	<p>Etor enye! Hallelujah!</p>
 	<p>Usenubok, dara nko</p>
 	<p>Mbubreyo, emen uyo.</p>
+	<p>Toro Enye! Toro Enye!</p>
+	<p>Hallelujah! Hallelujah! Hallelujah!</p>
 </div>
 <div className="verse">
     <h4 className="verse">3</h4>
@@ -26,6 +28,8 @@ export default function Hymn19(){
 	<p>Hallelujah! Hallelujah!</p>
 	<p>Afo ikan k’ediyama</p>
 	<p>Omono ufiop y’unwana,</p>
+	<p>Toro Enye! Toro Enye!</p>
+	<p>Hallelujah! Hallelujah! Hallelujah!</p>
 </div>
 <div className="verse">
     <h4 className="verse">4</h4>
@@ -34,6 +38,8 @@ export default function Hymn19(){
 	<p>Toro Enye! Toro Enye!</p>
 	<p>Mme nti mfri ekoride</p>
 	<p>Etim ewut ubong Esie.</p>
+	<p>Toro Enye! Toro Enye!</p>
+	<p>Hallelujah! Hallelujah! Hallelujah!</p>
 </div>
 <div className="verse">
     <h4 className="verse">5</h4>
@@ -42,6 +48,8 @@ export default function Hymn19(){
 	<p>Etor’ Enye! Hallelujah!</p>
 	<p>Etoro ete, etoro eyen</p>
 	<p>Etoro spirit, kpukpr’usen.</p>
+	<p>Toro Enye! Toro Enye!</p>
+	<p>Hallelujah! Hallelujah! Hallelujah!</p>
 </div>
             </>
         )
